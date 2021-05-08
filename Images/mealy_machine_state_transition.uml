@@ -1,0 +1,12 @@
+@startuml
+hide empty description
+
+state "s=0" as s0
+state "s=1" as s1
+
+s0 --> s0 : in=0 / out=0
+s0 --> s1 : in=1 / out=1
+s1 --> s1 : in=1 / out=0
+s1 --> s0 : in=0 / out=1
+
+@enduml
