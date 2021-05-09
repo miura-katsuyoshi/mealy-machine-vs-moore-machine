@@ -1,5 +1,5 @@
 { signal: [
-  { name: "clk",	wave: "P.......",},
+  { name: "clk",	wave: "P..........."},
   { name: "in",		wave: "010.1.0..1.."},
   { name: "s",		wave: "0.10.1.0..1."},
   { name: "out",	wave: "010.10...10."}

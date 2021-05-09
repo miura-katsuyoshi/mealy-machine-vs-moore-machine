@@ -1,4 +1,4 @@
-= ミーリーマシンとムーアマシン
+= 順序回路のRTL設計 --- ミーリーマシンとムーアマシン
 三浦克介 <k-miura@persol-rd.co.jp>
 v1.0, 2021-05-02
 :lang: ja
@@ -51,12 +51,12 @@ image::moore_machine.svg[]
 *_y_*(_t_) = *_s_*(_t_)
 
 [[fig:moore_machine_alpha]]
-.現在の状態（の一部）がそのまま出力となる順序回路（ムーアマシン出力直結）
+.現在の状態（の一部）がそのまま出力となる順序回路（出力直結ムーアマシン）
 image::moore_machine_alpha.svg[]
 
 <<fig:mealy_machine>> の構成は、ミーリーマシン（Mealy machine）と呼ばれる。
 <<fig:moore_machine>> の構成は、ムーアマシン（Moore macihne）と呼ばれる。
-<<fig:moore_machine_alpha>> の構成は、特に一般的な名称は無いが、本文書ではムーアマシンと区別するため、出力直結ムーアマシンと呼ぶことにする。出力直結ムーアマシンは、本文書独自の呼び名であるので、他では使用しないよう注意されたい。
+<<fig:moore_machine_alpha>> の構成は、ムーアマシンの一種であり、特に一般的な名称は無いが、本文書では一般的なムーアマシンと区別するため、出力直結ムーアマシンと呼ぶことにする。出力直結ムーアマシンは、本文書独自の呼び名であるので、他では使用しないよう注意されたい。
 
 以降の節では、これらの順序回路の構成について、その特徴、設計法を述べる。
 
@@ -64,7 +64,7 @@ image::moore_machine_alpha.svg[]
 
 <<fig:mealy_machine>> に示した、出力 *_y_*(_t_) が 入力 *_x_*(_t_) と 現在の状態 *_s_*(_t_) の関数となる順序回路は、ミーリーマシンと呼ばれる。
 
-=== 複数のミーリーマシンからなるシステムの遅延設計
+=== ミーリーマシンの特徴
 
 複数のミーリーマシンを接続したシステムを <<fig:mealy_machine_system>> に示す。
 
@@ -129,10 +129,20 @@ image:mealy_machine_synthesized_circuit.svg[]
 
 <<fig:moore_machine>> に示した、出力 *_y_*(_t_) が現在の状態 *_s_*(_t_) にのみ依存する順序回路をは、ムーアマシンと呼ばれる。
 
+=== ムーアマシンの特徴
+[[fig:moore_machine_system]]
+.複数のムーアマシンを接続したシステム
+image::moore_machine_system.svg[]
+
+=== ムーアマシンの設計
+
 [[fig:moore_machine_state_transition]]
-.エッジ検出回路の状態遷移図（ミーリーマシン）
+.エッジ検出回路の状態遷移図（ムーアーマシン）
 image::moore_machine_state_transition.svg[]
 
+[[fig:moore_machine_waveform]]
+.エッジ検出回路のタイミングチャート（ムーアーマシン）
+image::moore_machine_waveform.svg[]
 
 [[list:moore_machine_RTL]]
 .エッジ検出回路のRTL（ムーアマシン）
@@ -143,9 +153,9 @@ include::Sources/moore_machine.sv[]
 
 
 
-[[fig:moore_machine_synthesized_cirvuit]]
+[[fig:moore_machine_synthesized_circuit]]
 .エッジ検出回路の合成結果（ムーアマシン）
-image:moore_machine_synthesized_cirvuit.svg[] 
+image:moore_machine_synthesized_circuit.svg[] 
 
 
 
