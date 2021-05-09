@@ -9,3 +9,4 @@ Sources/transcript
 Sources/vsim.wlf
 *.bak
 *~
+*:Zone.Identifier
