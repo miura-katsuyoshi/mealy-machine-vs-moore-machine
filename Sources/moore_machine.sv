@@ -3,7 +3,7 @@ module moore_machine(
     input logic in,
     output logic out
 );
-    enum logic [1:0] { S0=2'b01, S_EDGE=2'b11, S1=2'b1, DO_NOT_CARE=2'bxx } s;
+    enum logic [1:0] { S0=2'b10, S_EDGE=2'b00, S1=2'b01, DO_NOT_CARE=2'bxx } s;
     always_ff @(posedge clk) begin
         unique case({s,in})
             {S0,    1'b0} : s <= S0;

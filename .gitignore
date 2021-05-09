@@ -4,5 +4,8 @@ Projects/*/incremental_db/
 Projects/*/output_files
 Projects/*/simulation/
 Projects/*/*.qws
+Sources/work/
+Sources/transcript
+Sources/vsim.wlf
 *.bak
 *~

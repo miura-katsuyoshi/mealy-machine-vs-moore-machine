@@ -1,8 +1,8 @@
 @startuml
 hide empty description
 
-state "s=0" as s0
-state "s=1" as s1
+state "s0 (s=0)" as s0
+state "s1 (s=1)" as s1
 
 s0 --> s0 : in=0 / out=0
 s0 --> s1 : in=1 / out=1

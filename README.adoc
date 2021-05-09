@@ -84,11 +84,11 @@ NOTE: レイテンシとは、入力を与えてから所望の出力が得ら�
 
 エッジ検出回路、即ち、入力信号の立ち上がりで、ワンショット（1クロック）のパルスを出力する回路を例に、ミーリーマシンの設計法を説明する。
 
-ミーリーマシンとして構成するエッジ検出回路の状態遷移図を <<fig:mealy_machine_sate_transition>> に示す。状態遷移図において、角丸の四角は現在の状態（FFの出力）を、矢印は状態遷移を、それぞれ、示す。"s=0" と書かれた角丸四角は、フリップフロップ _s_ が 0 を出力している状態を示す。"in=1/out=1" と書かれた矢印は、s=0 の状態において、in=1 が入力されると、out=1 を出力し、次のクロックサイクルに "s=1" の状態へ遷移することを示す。
+ミーリーマシンとして構成するエッジ検出回路の状態遷移図を <<fig:mealy_machine_state_transition>> に示す。状態遷移図において、角丸の四角は現在の状態（FFの出力）を、矢印は状態遷移を、それぞれ、示す。"s0 (s=0)" と書かれた角丸四角は、フリップフロップ _s_ が 0 を出力している状態を示す。"in=1/out=1" と書かれた矢印は、s0 状態において、in=1 が入力されると、out=1 を出力し、次のクロックサイクルに s1 状態へ遷移することを示す。
 
-[[fig:mealy_machine_sate_transition]]
+[[fig:mealy_machine_state_transition]]
 .エッジ検出回路の状態遷移図（ミーリーマシン）
-image::mealy_machine_sate_transition.svg[]
+image::mealy_machine_state_transition.svg[]
 
 ミーリーマシンとして構成するエッジ検出回路のタイミングチャートを <<fig:mealy_machine_waveform>> に示す。in が立ち上がるのと同時に out も立ち上がり、次の clk の立ち上がりまで out=1 となる。
 
@@ -106,6 +106,8 @@ image::mealy_machine_waveform.svg[]
 include::Sources/mealy_machine.sv[]
 ----
 
+<<list:mealy_machine_RTL>> の回路を <<list:testbench>> に示すテストベンチでシミュレーションした波形を、<<fig:mealy_machine_simulation>> に示す。この回路では、組み合わせ回路のみを経由して入力から出力に至るパスがあるため、入力信号の遷移タイミングやグリッチが出力信号に影響を与える。時刻40～50nsのサイクルでは、入力信号の遷移が遅れたため、出力信号の遷移も遅れている。時刻90~100nsのサイクルでは、入力信号にグリッチが生じたため、出力信号にもグリッチが生じている。
+
 [[list:testbench]]
 .エッジ検出回路のテストベンチ
 [source,SystemVerilog]
@@ -117,9 +119,36 @@ include::Sources/mealy_machine_tb.sv[]
 .エッジ検出回路のシミュレーション結果（ミーリーマシン）
 image:mealy_machine_simulation.png[] 
 
+<<list:mealy_machine_RTL>> を合成した結果の回路図を <<fig:mealy_machine_synthesized_circuit>> に示す。
+
+[[fig:mealy_machine_synthesized_circuit]]
+.エッジ検出回路の合成結果（ミーリーマシン）
+image:mealy_machine_synthesized_circuit.svg[] 
+
 == ムーアマシン
 
 <<fig:moore_machine>> に示した、出力 *_y_*(_t_) が現在の状態 *_s_*(_t_) にのみ依存する順序回路をは、ムーアマシンと呼ばれる。
+
+[[fig:moore_machine_state_transition]]
+.エッジ検出回路の状態遷移図（ミーリーマシン）
+image::moore_machine_state_transition.svg[]
+
+
+[[list:moore_machine_RTL]]
+.エッジ検出回路のRTL（ムーアマシン）
+[source,SystemVerilog]
+----
+include::Sources/moore_machine.sv[]
+----
+
+
+
+[[fig:moore_machine_synthesized_cirvuit]]
+.エッジ検出回路の合成結果（ムーアマシン）
+image:moore_machine_synthesized_cirvuit.svg[] 
+
+
+
 
 == 出力直結ムーアマシン
 

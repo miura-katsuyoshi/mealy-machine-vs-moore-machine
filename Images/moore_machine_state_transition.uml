@@ -1,0 +1,14 @@
+@startuml
+hide empty description
+
+state "S0 (s=10)" as s0 : out=0
+state "S1 (s=01)" as s1 : out=0
+state "S_EDGE (s=00)" as s_edge : out=1
+
+s0 --> s0 : in=0
+s0 --> s_edge : in=1
+s_edge --> s0 : in=0
+s_edge --> s1 : in=1
+s1 --> s1 : in=1
+s1 --> s0 : in=0
+@enduml
